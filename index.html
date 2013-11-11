@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>checkbox hide and show</title>
+		<style>
+			.one, .two, .three {
+				width: 300px;
+				height: 400px;
+				margin: 20px;
+				float: left;
+				background: pink;
+			}
+		</style>
+	</head>
+	<body>
+	<form action="" method="get"> 
+		<div class="checkboxes">
+			<label><input class="hideAndShow" type="checkbox" value="" checked="checked" data-checkbox="1"/>1 </label> 
+			<label><input class="hideAndShow" type="checkbox" value="" data-checkbox="2"/>2 </label> 
+		</div>
+		<div class="one" data-content="1">11111111</div>
+		<div class="two" data-content="2">22222222</div>
+		<div class="three" data-content="3">3333333333</div>
+		<div>
+			<label><input class="hideAndShow" type="checkbox" value="" data-checkbox="3"/>3 </label> 
+		</div>
+	</form> 
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			// 定义插件
+			(function($){
+			    $.fn.hideAndShow = function() {
+			        return this.each(function() {
+						var _dataCheckbox= $(this).attr("data-checkbox");
+						var _checked= $(this).attr("checked");
+						if($(this).is(":checked")) {
+							$("div[data-content]").each(function(){
+								if($(this).attr("data-content") == _dataCheckbox){
+									$(this).css("visibility", "hidden");
+								}else{
+									$(this).css("visibility", "visible");
+								}
+							})
+						}
+						$(this).click(function(){
+							var _dataCheckbox= $(this).attr("data-checkbox");
+							var _checked= $(this).attr("checked");
+							if($(this).is(":checked")) {
+								$("div[data-content]").each(function(){
+									if($(this).attr("data-content") == _dataCheckbox){
+										$(this).css("visibility", "hidden");
+									}
+								})
+							}else {
+								$("div[data-content]").each(function(){
+									if($(this).attr("data-content") == _dataCheckbox){
+										$(this).css("visibility", "visible");
+									}
+								})
+							}
+						});
+		        	});
+			    }
+			})(jQuery);
+
+			// 调用插件
+			$('.hideAndShow').hideAndShow();
+		</script>
+	</body>
+</html>
